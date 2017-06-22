@@ -118,13 +118,13 @@ if((isset($_GET['action']) && $_GET['action'] == 'ajout') || (isset($_GET['actio
 
 		<input type="hidden" id="id_categorie" name="id_categorie" value="' . $id_categorie . '">
 		
-		<div class="form-group">
+		<div class="form-group" style="width:25%;">
 		<label for="titre">Titre</label>
 		<input type="text" id="titre" name="titre" class="form-control" value="' . $titre . '">
 		</div>
 		
 		
-		<div class="form-group">
+		<div class="form-group" style="width:25%;">
 		<label for="motscles">Mots cles</label>
 		<input type="text" id="motscles" name="motscles" class="form-control" value="' . $motscles . '">
 		</div>
