@@ -2,27 +2,31 @@
 
 require_once('../inc/init.inc.php');
 
-require_once('../inc/haut.inc.php');
 
 $req = $bdd->query('SELECT * FROM membre');
 
 if (!empty($_POST)) {
 
-  debug($_POST);
   // création de variables pour insertion du nouveau membre
 
-  $pseudo = strip_tags($_POST['pseudo']);
-  $email = strip_tags($_POST['email']);
-  $password = strip_tags($_POST['password']);
-  $telephone = strip_tags($_POST['telephone']);
-  $nom = strip_tags($_POST['nom']);
-  $prenom = strip_tags($_POST['prenom']);
-  $civilite = strip_tags($_POST['civilite']);
-  $statut = strip_tags($_POST['statut']);
+  $pseudo = htmlspecialchars($_POST['pseudo']);
+  $email = htmlspecialchars($_POST['email']);
+  $password = htmlspecialchars($_POST['password']);
+  $telephone = htmlspecialchars($_POST['telephone']);
+  $nom = htmlspecialchars($_POST['nom']);
+  $prenom = htmlspecialchars($_POST['prenom']);
+  $civilite = htmlspecialchars($_POST['civilite']);
+  $statut = htmlspecialchars($_POST['statut']);
   $error = '';
 
 
   // contrôle de conformité pour les différents champs
+
+  //champs pseudo : déjà existant
+  $sel_pseudo = $bdd->query("SELECT pseudo FROM membre WHERE pseudo = '$pseudo'");
+  if ($sel_pseudo->rowCount() >= 1) {
+    $error .= 'Désolé, ce pseudo est déjà pris !<br />';
+  };
 
   //champs pseudo : entre 3 et 20 caractères et - _
   if (!preg_match("/^[a-zA-Z0-9_-]{3,20}$/", $pseudo)) {
@@ -39,16 +43,21 @@ if (!empty($_POST)) {
     $error .= 'Merci d\'indiquer un numéro de téléphone valide !<br />';
   };
 
-  
+  // si pas d'erreur : insertion
+  if (empty($error)) {
+    $insert = $bdd->prepare('INSERT INTO membre (pseudo, email, mdp, telephone, nom, prenom, civilite, statut) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
 
-  $insert = $bdd->prepare('INSERT INTO membre (pseudo, email, password, telephone, nom, prenom, civilite, statut) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+    $insert->execute(array($pseudo, $email, $password, $telephone, $nom, $prenom, $civilite, $statut));
 
-  $insert->execute(array($pseudo, $email, $password, $telephone, $nom, $prenom, $civilite, $statut));
+  }else {
+    // si erreur
+    echo $error;
+  }
 
-  echo $error;
+
 }
 
-
+require_once('../inc/haut.inc.php');
 
 ?>
 
@@ -57,7 +66,7 @@ if (!empty($_POST)) {
   <h1 class="text-center">Gestion des membres</h4>
   <div class="col-sm-12">
     <div class="table-responsive">
-      <table class="table table-bordered table-striped">
+      <table class="table table-bordered table-striped text-center">
         <thead>
           <tr>
             <?php for ($i=0; $i < $req->columnCount(); $i++) {
@@ -65,11 +74,11 @@ if (!empty($_POST)) {
       if ($colonne['name'] == 'mdp'){
           // on cache la colonne mot de passe
       }else {
-        echo '<th>' . $colonne['name'] . '</th>';
+        echo '<th class="text-center">' . $colonne['name'] . '</th>';
       }
 
     } ?>
-            <td>Actions</td>
+            <th class="text-center">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -91,6 +100,8 @@ if (!empty($_POST)) {
       </table>
     </div>
   </div>
+
+<!-- **************** formulaire d'insertion d'un nouveau membre ************************ -->
 
   <div class="col-sm-12">
     <form class="" method="post">
@@ -175,7 +186,7 @@ if (!empty($_POST)) {
         </div>
       </div>
 
-      <div class="col-sm-12 col-sm-offset-5 col-md-2 col-md-offset-5">
+      <div class="col-sm-2 col-md-offset-5">
         <div class="form-group">
           <button class="btn btn-primary" type="submit">Enregistrer</button>
         </div>
@@ -184,6 +195,7 @@ if (!empty($_POST)) {
     </form>
   </div>
 
+<!-- *********************************** fin de page **********************************-->
 
 <?php
 

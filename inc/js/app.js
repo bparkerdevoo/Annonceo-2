@@ -1,0 +1,8 @@
+$(function(){
+
+
+  $('.collapse').collapse();
+
+
+
+})
