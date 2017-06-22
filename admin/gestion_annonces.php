@@ -26,34 +26,34 @@ $r = $bdd->query ("SELECT * FROM annonce");
 	$content .= "<h2>Affichage des " . $r->rowCount() . " annonce(s)</h2>";
 
 
-	$content .= "<table style='border-collapse:collapse'><tr>.";
+	$content .= "<table class='table table-striped table-hover'><tr>.";
 
 
 
 	for ($i=0; $i < $r->columnCount() ; $i++)
 	{ 
 		$colonne = $r->getColumnMeta($i);
-		$content .= "<th style='padding:10px;text-align:center;'>$colonne[name] </th>";
+		$content .= "<th>$colonne[name] </th>";
 	}
-	$content .= "<th style='padding:10px;text-align:center;'>actions</th>";
+	$content .= "<th>actions</th>";
 	$content .= '</tr>';
 
 	while($ligne = $r->fetch(PDO::FETCH_ASSOC))
 	{
-		$content .='<tr>';
+		$content .='<tr class="table table-striped table-hover">';
 		foreach ($ligne as $indice => $valeur) 
 		{
 			if($indice == 'photo')
 			{
-				$content .= "<td><img src='$valeur' width='70' height='70'></td>";
+				$content .= "<td><img src='$valeur' width='70' height='50'></td>";
 			}
 			else
 			{
-				$content .= "<td style='padding:10px; text-align:center;'>$valeur</td>";
+				$content .= "<td style='vertical-align:middle; text-align:center;'>$valeur</td>";
 			}
 
 		}
-		$content .= "<td><a href=\"?action=modification&id_annonce=$ligne[id_annonce]\"> M </a><a href=\"?action=supression&id_annonce=$ligne[id_annonce]\"> S </a><a href=\"?../fiche_annonce.php&action=affichage&id_annonce=$ligne[id_annonce]\"> A </a></td>";
+		$content .= "<td style='vertical-align:middle;'><a href=\"?action=modification&id_annonce=$ligne[id_annonce]\"><span class=\"glyphicon glyphicon-pencil\"></span> </a><a href=\"?action=supression&id_annonce=$ligne[id_annonce]\"> <span class=\"glyphicon glyphicon-trash\"></span> </a><a href=\"?../fiche_annonce.php&action=affichage&id_annonce=$ligne[id_annonce]\"> <span class=\"glyphicon glyphicon-search\"></span> </a></td>";
 		
 
 		$content .= '<tr>';

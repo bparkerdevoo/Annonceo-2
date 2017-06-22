@@ -41,7 +41,7 @@ if(isset($_GET['action']) && $_GET['action'] == 'suppression')
 
 // -------------------- LIENS AFFICHAGE OU AJOUT ------------------------------
 
-$content .='<a href="?action=affichage">Liste des catégories</a><br><br>';
+$content .='<br><a href="?action=affichage">Liste des catégories</a><br><br>';
 $content .='<a href="?action=ajout">Ajouter une catégorie</a><br><br><br>';
 
 /************ AFFICHAGE DES CATEGORIES **************************************/
@@ -53,16 +53,16 @@ $r = $bdd->query ("SELECT * FROM categorie");
 	$content .= "<h2>Affichage des " . $r->rowCount() . " catégorie(s)</h2>";
 
 
-	$content .= "<table style='border-collapse:collapse'><tr>.";
+	$content .= "<table class='table table-striped table-hover'><tr>.";
 
 
 
 	for ($i=0; $i < $r->columnCount() ; $i++)
 	{ 
 		$colonne = $r->getColumnMeta($i);
-		$content .= "<th style='padding:10px;text-align:center;'>$colonne[name] </th>";
+		$content .= "<th >$colonne[name] </th>";
 	}
-	$content .= "<th style='padding:10px;text-align:center;'>actions</th>";
+	$content .= "<th '>actions</th>";
 	$content .= '</tr>';
 
 	while($ligne = $r->fetch(PDO::FETCH_ASSOC))
@@ -71,10 +71,10 @@ $r = $bdd->query ("SELECT * FROM categorie");
 		foreach ($ligne as $indice => $valeur) 
 		{
 			
-				$content .= "<td style='padding:10px;'>$valeur</td>";
+				$content .= "<td>$valeur</td>";
 		
 		}
-		$content .= "<td><a href=\"?action=modification&id_categorie=$ligne[id_categorie]\"> M </a><a href=\"?action=suppression&id_categorie=$ligne[id_categorie]\"> S </a></td>";
+		$content .= "<td><a href=\"?action=modification&id_categorie=$ligne[id_categorie]\"> <span class=\"glyphicon glyphicon-pencil\"></span> </a><a href=\"?action=suppression&id_categorie=$ligne[id_categorie]\"> <span class=\"glyphicon glyphicon-trash\"> </a></td>";
 		
 
 		$content .= '<tr>';
@@ -117,14 +117,19 @@ if((isset($_GET['action']) && $_GET['action'] == 'ajout') || (isset($_GET['actio
 	<form method="post" action="" enctype="multipart/form-data">
 
 		<input type="hidden" id="id_categorie" name="id_categorie" value="' . $id_categorie . '">
+		
+		<div class="form-group">
+		<label for="titre">Titre</label>
+		<input type="text" id="titre" name="titre" class="form-control" value="' . $titre . '">
+		</div>
+		
+		
+		<div class="form-group">
+		<label for="motscles">Mots cles</label>
+		<input type="text" id="motscles" name="motscles" class="form-control" value="' . $motscles . '">
+		</div>
 
-		<label for="titre">titre</label><br>
-		<input type="text" id="titre" name="titre" value="' . $titre . '"><br><br>
-
-		<label for="motscles">motscles</label><br>
-		<input type="text" id="motscles" name="motscles" value="' . $motscles . '"><br><br>
-
-		<input type="submit" value="Enregistrer la categorie">
+		<input type="submit" class="btn btn-success" value="Enregistrer la categorie">
 		
 		
 	</form>
