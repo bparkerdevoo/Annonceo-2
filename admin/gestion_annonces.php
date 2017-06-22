@@ -22,7 +22,10 @@ if(isset($_GET['action']) && $_GET['action'] == 'suppression')
 
 /************ AFFICHAGE DES ANNONCES **************************************/
 
-$r = $bdd->query ("SELECT * FROM annonce");
+if(empty($_GET) || $_GET['action'] == 'liste')
+{
+
+	$r = $bdd->query ("SELECT * FROM annonce");
 	$content .= "<h2>Affichage des " . $r->rowCount() . " annonce(s)</h2>";
 
 
@@ -59,6 +62,7 @@ $r = $bdd->query ("SELECT * FROM annonce");
 		$content .= '<tr>';
 	}
 	$content .= '</table>';
+}
 
 // --------------------MODIFICATION ANNONCE --------------------------------------
 
@@ -89,7 +93,7 @@ if(isset($_GET['action']) == 'modification')
 	
 
 	$content .= "<h3>Formulaire de modification</h3>";
-	$formulaire = '';
+	$formulaire = '<a href="?action=liste">Retour à la liste des annonces</a>';
 	$content .= $formulaire;
 
 	}
