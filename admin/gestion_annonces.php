@@ -33,9 +33,9 @@ $r = $bdd->query ("SELECT * FROM annonce");
 	for ($i=0; $i < $r->columnCount() ; $i++)
 	{ 
 		$colonne = $r->getColumnMeta($i);
-		$content .= "<th>$colonne[name] </th>";
+		$content .= "<th style='padding:10px;text-align:center;'>$colonne[name] </th>";
 	}
-	$content .= "<th>actions</th>";
+	$content .= "<th style='padding:10px;text-align:center;'>actions</th>";
 	$content .= '</tr>';
 
 	while($ligne = $r->fetch(PDO::FETCH_ASSOC))
@@ -49,7 +49,7 @@ $r = $bdd->query ("SELECT * FROM annonce");
 			}
 			else
 			{
-				$content .= "<td>$valeur</td>";
+				$content .= "<td style='padding:10px; text-align:center;'>$valeur</td>";
 			}
 
 		}
