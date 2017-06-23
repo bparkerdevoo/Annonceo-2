@@ -5,7 +5,7 @@ $content = '';
 
 $r =$bdd->query("
 
-	SELECT annonce.titre, annonce.description_longue, annonce.categorie_id, annonce.prix, annonce.photo, annonce.ville, annonce.adresse, annonce.cp, annonce.date_enregistrement, membre.prenom, membre.telephone, membre.email, note.note, photo.photo1, photo.photo2, photo.photo3, photo.photo4, commentaire.commentaire, categorie.titre, annonce.id_annonce
+	SELECT annonce.titre, annonce.description_longue, annonce.categorie_id, annonce.prix, annonce.photo, annonce.ville, annonce.adresse, annonce.cp, annonce.date_enregistrement, membre.prenom, membre.telephone, membre.email, note.note, photo.photo1, photo.photo2, photo.photo3, photo.photo4, commentaire.commentaire, annonce.id_annonce
 
 	FROM annonce
 	LEFT JOIN membre ON annonce.membre_id = membre.id_membre
@@ -22,7 +22,7 @@ $r =$bdd->query("
 	");
 
 $annonce_actuel = $r->fetchAll(PDO::FETCH_ASSOC); 
-debug($annonce_actuel);
+
 
 
 
@@ -90,8 +90,9 @@ foreach ($annonce_actuel as $key => $value):
 			<hr>
 
 			<?php 
+					$cate_id = $annonce_actuel[0]["categorie_id"];
 
-					$d =$bdd->query("SELECT photo FROM annonce WHERE categorie_id = '$annonce_actuel[categorie_id]'");
+					$d =$bdd->query("SELECT photo FROM annonce WHERE categorie_id = $cate_id");
 
 					while($ligne = $d->fetch(PDO::FETCH_ASSOC))
 					{
@@ -120,7 +121,41 @@ foreach ($annonce_actuel as $key => $value):
 			<div class="row" style="height:40px;">
 
 				<div class="link col-md-6">
-					<a href="">Déposer un commentaire ou une note</a>
+					<a href="?action=commenter">Déposer un commentaire ou une note</a>
+
+				<?php 
+
+
+					if(isset($_GET['action']) && $_GET['action'] == 'commenter')
+					{
+						if(!internauteEstConnecte())
+						{
+							alert('Connectez vous !');
+						}
+						else
+						{
+							echo
+							"<form>
+								<label for='commentaire'>Commentaire</label>
+								<textarea name='commentaire'></textarea>
+
+								<label for='note'>Donnez une note</label>
+								<select name='note'>
+									<option value='1'>1/5</option>
+									<option value='2'>2/5</option>
+									<option value='3'>3/5</option>
+									<option value='4'>4/5</option>
+									<option value='5'>5/5</option>
+								</select>
+
+
+							</form>";
+						}
+					}
+
+				 ?>
+
+
 				</div>
 
 				<div class="link col-md-6 text-right">
@@ -136,7 +171,10 @@ foreach ($annonce_actuel as $key => $value):
 						
 						<?php 
 
-							$p =$bdd->query("SELECT commentaire FROM commentaire WHERE annonce_id = '$annonce_actuel[id_annonce]'");
+							$id_anno = $annonce_actuel[0]["id_annonce"];
+							
+							$p =$bdd->query("SELECT commentaire FROM commentaire WHERE annonce_id = $id_anno");
+							
 
 							while($ligne = $p->fetch(PDO::FETCH_ASSOC))
 							{
