@@ -206,10 +206,8 @@ ALTER TABLE `photo`
 
 /****************** CONTENU TABLE ANNONCE ******************************/
 
-INSERT INTO `annonce` (`titre`, `desription_courte`, `description_longue`, `prix`
 INSERT INTO `annonce` (`titre`, `description_courte`, `description_longue`, `prix`
 , `photo`, `pays`, `ville`, `adresse`, `cp`, `membre_id`, `photo_id`, `categorie_id`
-, `date_enregistrement`) 
 , `date_enregistrement`)
 
 VALUES
@@ -232,14 +230,12 @@ VALUES
 ('titre_09', 'description_courte_09', 'description_longue_09', 109,
 'url_09','pays_09','ville_09','adresse_09',10009,009,009,009,'2017-06-22 09:01:01'),
 ('titre_10', 'description_courte_10', 'description_longue_10', 110,
-'url_10','pays_10','ville_10','adresse_10',10010,010,010,010,'2017-06-22 10:01:01')
 'url_10','pays_10','ville_10','adresse_10',10010,010,010,010,'2017-06-22 10:01:01');
 
 
 
 /****************** CONTENU TABLE CATEGORIE  ******************************/
 
-INSERT INTO `categorie` (`titre`, `motscles`) 
 INSERT INTO `categorie` (`titre`, `motscles`)
 
 VALUES
@@ -253,37 +249,26 @@ VALUES
 ('Services', 'Prestations de services, Evénements, ...'),
 ('Maison', 'Ameublement, Electroménager, Bricolage, Jardinage, ...'),
 ('Vetements', 'Jean, Chemises, Robes, Chaussure, ...'),
-('Autres', ''),
 ('Autres','...');
 
 INSERT INTO membre (pseudo, mdp, nom, prenom, telephone, email, civilite, statut, date_enregistrement) VALUES
 
-('Bret', 'password', 'Graham','Leanne', '1-770-736-8031', 'Sincere@april.biz', 'f', 0 ),
 ('Bret', 'password', 'Graham','Leanne', '1-770-736-8031', 'Sincere@april.biz', 'f', 0 ,''),
 
-('Antonette', 'password', 'Howell','Ervin','010-692-6593','Shanna@melissa.tv', 'm', 0 ),
 ('Antonette', 'password', 'Howell','Ervin','010-692-6593','Shanna@melissa.tv', 'm', 0 ,''),
 
-('Samantha','password','Bauch','Clementine','1-463-123-4447','Nathan@yesenia.net','f', 0 ),
 ('Samantha','password','Bauch','Clementine','1-463-123-4447','Nathan@yesenia.net','f', 0 ,''),
 
-('Karianne','password','Lebsack','Patricia', '493-170-9623','Julianne.OConner@kory.org',0,'f',''),
 ('Karianne','password','Lebsack','Patricia', '493-170-9623','Julianne.OConner@kory.org','f',0,''),
 
-('Kamren','password','Dietrich','Chelsey','(254)954-1289','Lucio_Hettinger@annie.ca','f',0),
 ('Kamren','password','Dietrich','Chelsey','(254)954-1289','Lucio_Hettinger@annie.ca','f',0,''),
 
-('Leopoldo_Corkery','password','Schulist','Dennis','1-477-935-8478','Karley_Dach@jasper.info','m',0),
 ('Leopoldo_Corkery','password','Schulist','Dennis','1-477-935-8478','Karley_Dach@jasper.info','m',0,''),
 
-('Elwyn.Skiles','password','Weissnat','Kurtis','210.067.6132','Telly.Hoeger@billy.biz','m',0),
 ('Elwyn.Skiles','password','Weissnat','Kurtis','210.067.6132','Telly.Hoeger@billy.biz','m',0,''),
 
-('Maxime_Nienow','password','Runolfsdottir','Nicholas', '586.493.6943','Sherwood@rosamond.me','m',0),
 ('Maxime_Nienow','password','Runolfsdottir','Nicholas', '586.493.6943','Sherwood@rosamond.me','m',0,''),
 
-('Delphine','password','Reichert','Glenna','(775)976-6794','Chaim_McDermott@dana.io','f',0),
 ('Delphine','password','Reichert','Glenna','(775)976-6794','Chaim_McDermott@dana.io','f',0,''),
 
-('Moriah.Stanton','password','DuBuque','Clementina','024-648-3804','Rey.Padberg@karina.biz','f',0);
 ('Moriah.Stanton','password','DuBuque','Clementina','024-648-3804','Rey.Padberg@karina.biz','f',0,'');
