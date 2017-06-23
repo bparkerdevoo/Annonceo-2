@@ -1,27 +1,29 @@
 <?php 
 require_once("inc/init.inc.php");
 
+$content = '';
+
 $r =$bdd->query("
 
-	SELECT annonce.titre, annonce.description_longue, annonce.prix, annonce.photo, annonce.ville, annonce.adresse, annonce.cp, annonce.date_enregistrement, membre.prenom, membre.telephone, membre.email, note.note, photo.photo1, photo.photo2, photo.photo3, photo.photo4, commentaire.commentaire;
+	SELECT annonce.titre, annonce.description_longue, annonce.prix, annonce.photo, annonce.ville, annonce.adresse, annonce.cp, annonce.date_enregistrement, membre.prenom, membre.telephone, membre.email, note.note, photo.photo1, photo.photo2, photo.photo3, photo.photo4, commentaire.commentaire
 
 	FROM annonce
-	LEFT JOIN membre ON annonce.membre_id = membre.id_membre,
-	LEFT JOIN photo ON annonce.photo_id = photo.id_photo,
-	LEFT JOIN note ON annonce.membre_id = note.membre_id1,
-	LEFT JOIN commentaire ON annonce.id_annonce = commentaire.annonce_id;
+	LEFT JOIN membre ON annonce.membre_id = membre.id_membre
+	LEFT JOIN photo ON annonce.photo_id = photo.id_photo
+	LEFT JOIN note ON annonce.membre_id = note.membre_id1
+	LEFT JOIN commentaire ON annonce.id_annonce = commentaire.annonce_id
 
 
-	WHERE annonce.id_annonce = $_GET[id_annonce];
+	and annonce.id_annonce = $_GET[id_annonce]
 
 
 
 	");
 
+//$annonce_actuel = $r->fetch(PDO::FETCH_ASSOC); 
+debug($r);
 
-
-
-require_once("../inc/haut.inc.php");
+require_once("inc/haut.inc.php");
 echo $content;
 
 ?>
@@ -122,5 +124,5 @@ echo $content;
 
 
 <?php 
-require_once("../inc/bas.inc.php");
+require_once("inc/bas.inc.php");
 ?>
