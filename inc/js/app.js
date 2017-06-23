@@ -1,8 +1,11 @@
 $(function(){
 
+// page accueil
 
-  $('.collapse').collapse();
+$('#select_categorie').change(function(){
 
+//$.post("accueil.php", $('#form_filtres_gauche').serialize());
 
+});
 
 })
