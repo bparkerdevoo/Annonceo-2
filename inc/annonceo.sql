@@ -253,7 +253,9 @@ VALUES
 
 INSERT INTO membre (pseudo, mdp, nom, prenom, telephone, email, civilite, statut, date_enregistrement) VALUES
 
-('Bret', 'password', 'Graham','Leanne', '1-770-736-8031', 'Sincere@april.biz', 'f', 0 ,''),
+
+('Bret', 'password', 'Graham','Leanne', '1-770-736-8031', 'Sincere@april.biz', 'f', 0,'' ),
+
 
 ('Antonette', 'password', 'Howell','Ervin','010-692-6593','Shanna@melissa.tv', 'm', 0 ,''),
 
