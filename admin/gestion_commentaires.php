@@ -1,25 +1,54 @@
 <?php
 
 require_once("../inc/init.inc.php");
-
+if(!internauteEstConnecteEtEstAdmin())
+{
+	header("location:../connexion.php");
+	exit(); // interrompt le script
+}
 
 	$content='';
 
-		if($_POST){
+		if(!empty($_POST)){
+
+
+			//Sécurisation des champs du formulaire
+	foreach($_POST as $indice => $valeur)
+	{
+		$_POST[$indice] = htmlspecialchars(addslashes($valeur));
+	}
+
+
+
+	if(!is_numeric($_POST['membre_id']))
+	{
+		$content .= '<div>Merci de renseigner un caractère numérique dans le champs membre_id</div>';
+	}
+	if(!is_numeric($_POST['annonce_id']))
+	{
+		$content .= '<div>Merci de renseigner un caractère numérique dans le champs annonce_id</div>';
+	}
+	if(strlen($_POST['commentaire']) < 11 || strlen($_POST['commentaire']) > 500)
+	{
+		$content .= '<div class="erreur">Merci de renseigner au moins 10 caractères dans le champs commentaire</div>';
+	}
+	
+	if(empty($content)){
+
 
 
 	$bdd->query("REPLACE INTO commentaire(id_commentaire,membre_id,annonce_id,commentaire) VALUES('$_POST[id_commentaire]','$_POST[membre_id]','$_POST[annonce_id]','$_POST[commentaire]')");
-	   $content .= 'Le produit a bien été enregistré en BDD!';
-
+	   $content .= '<div>Le commentaire a bien été modifié!</div>';
+	}
 	   
 	}
 
-//------- SUPPRESSION PRODUIT --------//
+//------- SUPPRESSION COMMENTAIRE --------//
 if(isset($_GET['action']) && $_GET['action'] == 'suppression')
 {
 	// Executez une requete de suppression
 	$bdd->query("DELETE FROM commentaire WHERE id_commentaire='$_GET[id_commentaire]'");
-	$content .= "le produit n° " . $_GET['id_produit'] . " a été supprimé";
+	$content .= "le commentaire n° " . $_GET['id_produit'] . " a été supprimé";
 
 	
 }
@@ -87,12 +116,9 @@ echo '<h1 class="text-center">Modifiez le commentaire n°'.$id_commentaire.'</h1
 
 	<div class="form-group row">
 	<form method="post" action="">
-	<div class="form-group row">
-		 <div class="col-10">
-			<label for="id_commentaire" class="col-2 col-form-label">id_commentaire</label>
-			<input class="form-control" type="text" id="id_commentaire" name="id_commentaire" value="' . $id_commentaire . '">
-		</div>
-	</div>
+	
+			<input class="form-control" type="hidden" id="id_commentaire" name="id_commentaire" value="' . $id_commentaire . '">
+
 		
 	<div class="form-group row">
 		<div class="col-10">
@@ -106,7 +132,7 @@ echo '<h1 class="text-center">Modifiez le commentaire n°'.$id_commentaire.'</h1
 			<label for="annonce_id" class="col-2 col-form-label">annonce_id</label><br>
 			<input class="form-control" type="text" id="annonce_id" name="annonce_id" placeholder="annonce_id" value="' . $annonce_id . '">
 		</div>
-	</div
+	</div>
 
 	<div class="form-group row">
 		<div class="col-10">
@@ -131,7 +157,7 @@ echo '<h1 class="text-center">Modifiez le commentaire n°'.$id_commentaire.'</h1
 	</div>';
 
 	echo '<div class="col text-center">
-    		 <a href="?action=affichage">Retourner sur la liste des produits</a>
+    		 <a href="?action=affichage">Retourner sur la liste des commentaires</a>
    		 </div>';
 
 
