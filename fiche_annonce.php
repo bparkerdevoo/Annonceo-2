@@ -121,7 +121,9 @@ foreach ($annonce_actuel as $key => $value):
 			<div class="row" style="height:40px;">
 
 				<div class="link col-md-6">
-					<a href="?action=commenter">Déposer un commentaire ou une note</a>
+					<a href="">Déposer un commentaire ou une note</a>
+
+
 
 				<?php 
 
@@ -205,3 +207,6 @@ foreach ($annonce_actuel as $key => $value):
 endforeach;
 require_once("inc/bas.inc.php");
 ?>
+
+
+
