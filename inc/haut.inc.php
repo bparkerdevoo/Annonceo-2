@@ -44,6 +44,7 @@
         <ul class="nav navbar-nav">
           <li><a href="">Qui sommes-nous ?</a></li>
           <li><a href="">Contact</a></li>
+          <li><a href="nouvelle_annonce.php">Déposer une nouvelle annonce</a></li>
 
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -54,15 +55,15 @@
               <li><a href="profil.php">Profil</a></li>
               <?php else: ?>
               <li><a href="connexion.php">Connexion</a></li>
-              <li><a href="inscriptio.php">Inscription</a></li>
+              <li><a href="inscription.php">Inscription</a></li>
               <?php endif;
           if (internauteEstConnecteEtEstAdmin()): ?>
-              <li><a href="profil.php">Gestion des annonces</a></li>
-              <li><a href="gestion_categories.php">Gestion des catégories</a></li>
-              <li><a href="gestion_commentaires.php">Gestion des commentaires</a></li>
-              <li><a href="gestion_membres.php">Gestion des membes</a></li>
-              <li><a href="gestion_notes.php">Gestion des notes</a></li>
-              <li><a href="statistiques.php">Statistiques</a></li>
+              <li><a href="admin/gestion_annonces.php">Gestion des annonces</a></li>
+              <li><a href="admin/gestion_categories.php">Gestion des catégories</a></li>
+              <li><a href="admin/gestion_commentaires.php">Gestion des commentaires</a></li>
+              <li><a href="admin/gestion_membres.php">Gestion des membres</a></li>
+              <li><a href="admin/gestion_notes.php">Gestion des notes</a></li>
+              <li><a href="admin/statistiques.php">Statistiques</a></li>
               <?php endif; ?>
             </ul>
           </li>
