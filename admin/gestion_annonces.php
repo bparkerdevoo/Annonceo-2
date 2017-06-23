@@ -56,7 +56,7 @@ if(empty($_GET) || $_GET['action'] == 'liste')
 			}
 
 		}
-		$content .= "<td style='vertical-align:middle;'><a href=\"?action=modification&id_annonce=$ligne[id_annonce]\"><span class=\"glyphicon glyphicon-pencil\"></span> </a><a href=\"?action=supression&id_annonce=$ligne[id_annonce]\"> <span class=\"glyphicon glyphicon-trash\"></span> </a><a href=\"?../fiche_annonce.php&action=affichage&id_annonce=$ligne[id_annonce]\"> <span class=\"glyphicon glyphicon-search\"></span> </a></td>";
+		$content .= "<td style='vertical-align:middle;'><a href=\"?action=modification&id_annonce=$ligne[id_annonce]\"><span class=\"glyphicon glyphicon-pencil\"></span> </a><a href=\"?action=supression&id_annonce=$ligne[id_annonce]\"> <span class=\"glyphicon glyphicon-trash\"></span> </a><a href=\"../fiche_annonce.php?id_annonce=$ligne[id_annonce]\"> <span class=\"glyphicon glyphicon-search\"></span> </a></td>";
 		
 
 		$content .= '<tr>';
