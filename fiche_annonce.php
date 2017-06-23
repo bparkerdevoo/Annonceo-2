@@ -121,31 +121,45 @@ foreach ($annonce_actuel as $key => $value):
 			<div class="row" style="height:40px;">
 
 				<div class="link col-md-6">
-					<a href="">Déposer un commentaire ou une note</a>
+					<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Déposer un commentaire ou une note</button>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button>
+						<!-- Modal -->
+						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+	
+						      <div class="modal-body">
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+						        <form method="post">
+						        <div class="">
+									<label for='commentaire'>Commentaire</label>
+									<textarea name='commentaire'></textarea>
+								</div>
+								
+								<div class="form-group">
+									<label for='note'>Donnez une note</label>
+									<select name='note'>
+										<option value='1'>1/5</option>
+										<option value='2'>2/5</option>
+										<option value='3'>3/5</option>
+										<option value='4'>4/5</option>
+										<option value='5'>5/5</option>
+									</select>
+								</div>
+
+								<input type="submit" class="btn btn-success" value="Enregistrer">
+
+								</form>
+
+						      </div>
+
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+						      
+						      </div>
+						    </div>
+						  </div>
+						</div>
 
 				<?php 
 
@@ -159,21 +173,7 @@ foreach ($annonce_actuel as $key => $value):
 						else
 						{
 							echo
-							"<form>
-								<label for='commentaire'>Commentaire</label>
-								<textarea name='commentaire'></textarea>
-
-								<label for='note'>Donnez une note</label>
-								<select name='note'>
-									<option value='1'>1/5</option>
-									<option value='2'>2/5</option>
-									<option value='3'>3/5</option>
-									<option value='4'>4/5</option>
-									<option value='5'>5/5</option>
-								</select>
-
-
-							</form>";
+							"";
 						}
 					}
 
