@@ -131,6 +131,11 @@ foreach ($annonce_actuel as $key => $value):
 						      <div class="modal-body">
 
 						        <form method="post">
+
+						        	<input type="hidden" name="membreCommenteur" value="">
+						        	<input type="hidden" name="membreCommente" value="">
+						        	<input type="hidden" name="id_annonce_com" value="">
+
 						        <div class="">
 									<label for='commentaire'>Commentaire</label>
 									<textarea name='commentaire'></textarea>
@@ -163,19 +168,18 @@ foreach ($annonce_actuel as $key => $value):
 
 				<?php 
 
-
-					if(isset($_GET['action']) && $_GET['action'] == 'commenter')
+					if($_POST)
 					{
-						if(!internauteEstConnecte())
+						if(internauteEstConnecte() == false)
 						{
-							alert('Connectez vous !');
+							alert('Connectez vous !')
 						}
 						else
 						{
-							echo
-							"";
+							$bdd->query("INSERT INTO commentaire")
 						}
 					}
+					
 
 				 ?>
 
