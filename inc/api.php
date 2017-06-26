@@ -14,7 +14,7 @@ if (!empty($_POST)) {
       LEFT JOIN membre ON membre.id_membre = annonce.membre_id
       LEFT JOIN note ON annonce.membre_id = note.membre_id1
       WHERE categorie_id = '$categorie'
-      LIMIT 0, 3");
+      ");
 
     // si filtre membre
 
@@ -26,7 +26,7 @@ if (!empty($_POST)) {
       LEFT JOIN membre ON membre.id_membre = annonce.membre_id
       LEFT JOIN note ON annonce.membre_id = note.membre_id1
       WHERE id_membre = '$membre'
-      LIMIT 0, 3");
+      ");
 
   // si pas de filtre
 
@@ -40,14 +40,14 @@ if (!empty($_POST)) {
       LEFT JOIN membre ON membre.id_membre = annonce.membre_id
       LEFT JOIN note ON annonce.membre_id = note.membre_id1
       WHERE id_membre = '$membre' AND categorie_id = '$categorie'
-      LIMIT 0, 3");
+      ");
   }else {
     $annonces = $bdd->query('SELECT
       annonce.titre, annonce.description_courte, annonce.prix, annonce.id_annonce, membre.pseudo, note.note
       FROM annonce
       LEFT JOIN membre ON membre.id_membre = annonce.membre_id
       LEFT JOIN note ON annonce.membre_id = note.membre_id1
-      LIMIT 0, 3
+      
       ');
   }
 

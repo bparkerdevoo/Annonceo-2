@@ -208,7 +208,7 @@ ALTER TABLE `photo`
 
 INSERT INTO `annonce` (`titre`, `description_courte`, `description_longue`, `prix`
 , `photo`, `pays`, `ville`, `adresse`, `cp`, `membre_id`, `photo_id`, `categorie_id`
-, `date_enregistrement`) 
+, `date_enregistrement`)
 
 VALUES
 ('titre_01', 'description_courte_01', 'description_longue_01', 101,
@@ -236,7 +236,7 @@ VALUES
 
 /****************** CONTENU TABLE CATEGORIE  ******************************/
 
-INSERT INTO `categorie` (`titre`, `motscles`) 
+INSERT INTO `categorie` (`titre`, `motscles`)
 
 VALUES
 ('Emploi', 'Offres d\'emploi'),
@@ -253,13 +253,15 @@ VALUES
 
 INSERT INTO membre (pseudo, mdp, nom, prenom, telephone, email, civilite, statut, date_enregistrement) VALUES
 
+
 ('Bret', 'password', 'Graham','Leanne', '1-770-736-8031', 'Sincere@april.biz', 'f', 0,'' ),
+
 
 ('Antonette', 'password', 'Howell','Ervin','010-692-6593','Shanna@melissa.tv', 'm', 0 ,''),
 
 ('Samantha','password','Bauch','Clementine','1-463-123-4447','Nathan@yesenia.net','f', 0 ,''),
 
-('Karianne','password','Lebsack','Patricia', '493-170-9623','Julianne.OConner@kory.org',0,'f',''),
+('Karianne','password','Lebsack','Patricia', '493-170-9623','Julianne.OConner@kory.org','f',0,''),
 
 ('Kamren','password','Dietrich','Chelsey','(254)954-1289','Lucio_Hettinger@annie.ca','f',0,''),
 

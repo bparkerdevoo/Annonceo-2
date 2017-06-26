@@ -64,8 +64,9 @@ require_once('inc/haut.inc.php');
     <!-- affichage du form de gauche -->
     <div class="col-sm-12 col-md-8" id="annonces">
 
-        <?php foreach ($results_annonces as $key => $value): ?>
-        <div class="panel panel-default" id_annonce="<?= $value['id_annonce'] ?>">
+      <?php foreach ($results_annonces as $key => $value): ?>
+      <div class="panel panel-default">
+        <a href="fiche_annonce.php?id_annonce=<?= $value['id_annonce'] ?>">
           <h4 class="text-center"><?= $value['titre'] ?></h3>
           <div class="panel-body">
           <img src="" alt="">
@@ -73,6 +74,7 @@ require_once('inc/haut.inc.php');
           <span><?= $value['pseudo'] . ' ' . $value['note'] ?></span>
           <span class=""><?= $value['prix'] ?></span>
           </div>
+        </a>
 
       </div>
       <?php endforeach; ?>
