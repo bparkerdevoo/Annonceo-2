@@ -9,23 +9,23 @@ if (!internauteEstConnecte()) // si le membre n'est pas connecté, il ne doit pa
 	}
 
 $content = '';
-$content.= '<h1 class="">Bonjour ' . $_SESSION['membre']['pseudo'] . '!<h1>';
+$content.= '<h1 class="text-center">Bonjour ' . $_SESSION['membre']['pseudo'] . '!<h1>';
 
 // Information du profil de l'utilisateur
 
-$content.= '<h2> Voici les informations de votre profil </h2>';
-$content.= '<h3> Votre email est : ' . $_SESSION['membre']['email'] . '<h3>';
-$content.= '<h3> Votre prénom est : ' . $_SESSION['membre']['prenom'] . '<h3>';
-$content.= '<h3> Votre nom est : ' . $_SESSION['membre']['nom'] . '<h3>';
-$content.= '<h3> Votre téléphone est : ' . $_SESSION['membre']['telephone'] . '<h3>';
-$content.= '<h3> Vous êtes membre depuis : ' . $_SESSION['membre']['date_enregistrement'] . '<h3>';;
+$content.= '<h2 class="text-center alert alert-info"> Les informations de votre profil </h2>';
+$content.= '<ul class="list-group" ><li class="list-group-item"> Votre email est : ' . $_SESSION['membre']['email'] . '</li>';
+$content.= '<li class="list-group-item"> Votre prénom est : ' . $_SESSION['membre']['prenom'] . '</li>';
+$content.= '<li class="list-group-item"> Votre nom est : ' . $_SESSION['membre']['nom'] . '</li>';
+$content.= '<li class="list-group-item"> Votre téléphone est : ' . $_SESSION['membre']['telephone'] . '</li>';
+$content.= '<li class="list-group-item"> Vous êtes membre depuis : ' . $_SESSION['membre']['date_enregistrement'] . '</li>';;
 if (internauteEstConnecteEtEstAdmin())
 	{
-	$content.= '<h3>Vous êtes ADMIN</h3>';
+	$content.= '<li class="list-group-item">Vous êtes ADMIN</li></ul>';
 	}
   else
 	{
-	$content.= '<h3>Vous êtes MEMBRE</h3>';
+	$content.= '<li class="list-group-item">Vous êtes MEMBRE</li></ul>';
 	}
 
 // ------- SUPPRESSION des annonces --------//

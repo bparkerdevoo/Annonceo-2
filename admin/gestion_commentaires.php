@@ -45,11 +45,11 @@ if(!internauteEstConnecteEtEstAdmin())
 
 //------- SUPPRESSION COMMENTAIRE --------//
 if(isset($_GET['action']) && $_GET['action'] == 'suppression')
-{
+{ 	
 	// Executez une requete de suppression
 	$bdd->query("DELETE FROM commentaire WHERE id_commentaire='$_GET[id_commentaire]'");
-	$content .= "le commentaire n° " . $_GET['id_produit'] . " a été supprimé";
-
+	$content .= "<div class=\"alert alert-success\">Le commentaire n° " . $_GET['id_commentaire'] . " a été supprimé</div>";
+	$content .='<div class="col text-center"><a href="?action=affichage">Retourner sur la liste des commentaires</a></div>';
 	
 }
 
@@ -58,12 +58,17 @@ if(isset($_GET['action']) && $_GET['action'] == 'suppression')
 if(empty($_GET) ||$_GET['action']=='affichage'){
 
 
-	$r = $bdd->query("SELECT * FROM commentaire");
+	$r = $bdd->query("SELECT commentaire.id_commentaire, commentaire.membre_id, membre.email, commentaire.annonce_id, annonce.titre,commentaire.commentaire,commentaire.date_enregistrement 
+		FROM commentaire 
+		LEFT JOIN membre ON commentaire.membre_id=membre.id_membre
+		LEFT JOIN annonce ON commentaire.membre_id=annonce.membre_id");
+
 	$content .= "<h1 class=\"text-center\">Affichage des " . $r->rowCount() . " commentaire(s)</h1>";
 	$content .=  "<table class='table table-striped text-center'><tr>";
 	for($i = 0; $i < $r->columnCount(); $i++)
 	{
 		$colonne = $r->getColumnMeta($i);
+
 		$content .= "<th class=\"text-center\">$colonne[name]</th>";
 	}
 	$content .= "<th>actions</th>";
