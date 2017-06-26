@@ -9,6 +9,10 @@ if(!internauteEstConnecte())// si le membre n'est pas connecté, il ne doit pas 
 	header("location:connexion.php"); // nous l'invitons à se connecter
 }
 
+// séléctio ndes catégories
+
+$select = $bdd->query('SELECT * from categorie');
+$categories = $select->fetchAll();
 
 //Insertion d'une annonce en BDD
 if(!empty($_POST)){
@@ -37,7 +41,7 @@ if(!empty($_POST)){
 	{
 		$content .= '<div class="alert alert-danger">Merci de renseigner un caractère numérique pour la catégorie</div>';
 	}
-	
+
 	if (!eregi("^([0-9]{5})$", $_POST['cp']))
 	{
 		$content .= '<div class="alert alert-danger">Le code postal doit être composé de 5 chiffres !</div>';
@@ -79,15 +83,13 @@ echo $content;
             <input class="form-control" type="text" id="prix" name="prix" placeholder="prix">
          </div>
          <div class="form-group">
-            <label for="categorie_id" class="col-2 col-form-label">Catégorie</label><br>
-            <select name="categorie_id" id="categorie_id" class="selectpicker">
-               <option value="1">1</option>
-               <option value="2">2</option>
-               <option value="3">3</option>
-               <option value="4">4</option>
+            <label for="categorie_id">Catégorie</label>
+            <select name="categorie_id" id="categorie_id" class="form-control">
+							<?php foreach ($categories as $key => $value): ?>
+								<option value="<?= $value['id_categorie'] ?>"><?= $value['titre'] ?></option>
+							<?php endforeach; ?>
             </select>
          </div>
-         <input type="submit" value="enregister" class="btn btn-success">
    </div>
    <!-- partie de droite -->
    <div class="col-sm-12 col-md-6">
@@ -108,6 +110,7 @@ echo $content;
 		   <input class="form-control" type="text" id="code postal" name="cp" placeholder="code postal">
 	   </div>
    </div>
+	 <input type="submit" value="enregister" class="btn btn-success">
    </form>
 </div>
 

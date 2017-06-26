@@ -69,10 +69,16 @@ require_once('inc/haut.inc.php');
         <a href="fiche_annonce.php?id_annonce=<?= $value['id_annonce'] ?>">
           <h4 class="text-center"><?= $value['titre'] ?></h3>
           <div class="panel-body">
-          <img src="" alt="">
-          <span><?= $value['description_courte'] ?></span><br>
-          <span><?= $value['pseudo'] . ' ' . $value['note'] ?></span>
-          <span class=""><?= $value['prix'] ?></span>
+            <div class="media">
+              <div class="media-left">
+                <img class="media-object" src="<?= $value['photo'] ?>" alt="">
+              </div>
+              <div class="media-body">
+                <span><?= $value['description_courte'] ?></span>
+              </div>
+              </div>
+          <span><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <?= $value['pseudo'] . '  ' . stars($value['note']) ?></span>
+          <span class=""><?= $value['prix'] ?> <span class="glyphicon glyphicon-eur" aria-hidden="true"></span></span>
           </div>
         </a>
 
